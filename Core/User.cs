@@ -12,8 +12,10 @@ namespace Core
     {
         [BsonId]
         [BsonIgnoreIfDefault]
-        public ObjectId _id { get; set; }
+        private ObjectId _id { get; set; }
+        public ObjectId Id { get { return _id; } }
         public string Login { get; set; }
+        public Role Role { get; set; }
         public string Password { get; set; }
     }
 }

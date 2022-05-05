@@ -17,13 +17,18 @@
             <RowDefinition Height="0.1*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView x:Name="lvProducts" ItemsSource="{Binding Products}" SelectionChanged="ListView_SelectionChanged" Grid.RowSpan="2" Grid.Row="1">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+            <TextBlock Margin="20, 0" Width="150" Text="Название" TextAlignment="Center"/>
+            <TextBlock Margin="20, 0" Width="50" Text="Кол-во" TextAlignment="Center"/>
+            <TextBlock Margin="20, 0" Width="50" Text="Цена" TextAlignment="Center"/>
+        </StackPanel>
+        <ListView x:Name="lvProducts" ItemsSource="{Binding Products}" SelectionChanged="ListView_SelectionChanged" Grid.RowSpan="2" Grid.Row="1" Margin="0, 20">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" >
-                        <TextBlock Text="{Binding Name}" Margin="20, 0"/>
-                        <TextBlock Text="{Binding Count}" Margin="20, 0"/>
-                        <TextBlock Text="{Binding Price}" Margin="20, 0"/>
+                        <TextBlock Text="{Binding Name}" Margin="20, 0" Width="150" TextWrapping="Wrap" FontSize="20"/>
+                        <TextBlock Text="{Binding Count}" Margin="20, 0" Width="50" FontSize="20"/>
+                        <TextBlock Text="{Binding Price}" Margin="20, 0" Width="50" FontSize="20"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -33,9 +38,10 @@
             <Button x:Name="btnOrders" Content="Мои заказы"  Click="btnOrders_Click" Margin="50,0"/>
             <Button x:Name="btnBasket" Content="Корзина"  Click="btnBasket_Click" Margin="10,0"/>
         </StackPanel>
+        <Label x:Name="lblEmpty" Content="Выберите товар" Grid.Row="1" Grid.Column="1" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <StackPanel x:Name="spProduct" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Visibility="Hidden">
             <TextBlock Text="Продукт" FontSize="20"/>
-            <TextBox x:Name="tbProduct" FontSize="15"/>
+            <TextBox x:Name="tbProduct" FontSize="15" IsReadOnly="True"/>
             <TextBlock Text="Количество" FontSize="20"/>
             <TextBox FontSize="15" x:Name="tbCount"/>
             <Button x:Name="btnAddToBasket" Content="Добавить в корзину" Margin="30,10" Click="btnAddToBasket_Click"/>

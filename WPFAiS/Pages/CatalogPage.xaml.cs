@@ -27,20 +27,30 @@ namespace Raskulak.Pages
             InitializeComponent();
             Products = DataAccess.GetProducts();
             DataAccess.NewItemAddedEvent += RefreshProducts;
+            if (App.User.Role.Name == "Client")
+                btnAddProduct.Visibility = Visibility.Hidden;
+
             DataContext = this;
         }
-
         private void RefreshProducts()
         {
             Products = DataAccess.GetProducts();
             lvProducts.ItemsSource = Products;
             lvProducts.Items.Refresh();
         }
-
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            spProduct.Visibility = Visibility.Visible;
-            tbProduct.Text = (lvProducts.SelectedItem as Product).Name;
+            if (lvProducts.SelectedItem != null)
+            {
+                spProduct.Visibility = Visibility.Visible;
+                lblEmpty.Visibility = Visibility.Hidden;
+                tbProduct.Text = (lvProducts.SelectedItem as Product).Name;
+            }
+            else
+            { 
+                lblEmpty.Visibility = Visibility.Visible;
+                spProduct.Visibility = Visibility.Hidden;
+            }
         }
 
         private void btnBasket_Click(object sender, RoutedEventArgs e)
@@ -50,7 +60,18 @@ namespace Raskulak.Pages
 
         private void btnAddToBasket_Click(object sender, RoutedEventArgs e)
         {
-            DataAccess.AddToBasket(lvProducts.SelectedItem as Product, int.Parse(tbCount.Text), App.User);
+            var product = lvProducts.SelectedItem as Product;
+            int count;
+            if (int.TryParse(tbCount.Text, out count) && count > 0 && count <= product.Count)
+            {
+                DataAccess.UpdateCount(product, count);
+
+                DataAccess.AddToBasket(product, count, App.User);
+            }
+            else 
+            {
+                MessageBox.Show("Неверное количество продукта");
+            }
         }
 
         private void btnOrders_Click(object sender, RoutedEventArgs e)

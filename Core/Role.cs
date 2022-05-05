@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class Order
+    public class Role
     {
         [BsonId]
         [BsonIgnoreIfDefault]
         private ObjectId _id { get; set; }
         public ObjectId Id { get { return _id; } }
-        public User User { get; set; }
-        public List<BasketItem> Items { get; set; }
+        public string Name { get; set; }
     }
 }

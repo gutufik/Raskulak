@@ -12,7 +12,8 @@ namespace Core
     {
         [BsonId]
         [BsonIgnoreIfDefault]
-        public ObjectId _id { get; set; }
+        private ObjectId _id;
+        public ObjectId Id { get { return _id; } }
         public User User { get; set; }
         public Product Product { get; set; }
         public int Count { get; set; }

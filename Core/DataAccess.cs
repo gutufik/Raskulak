@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,27 @@ namespace Core
             var products = (MongoCollectionBase<Product>)database.GetCollection<Product>("Product");
             products.InsertOneAsync(product);
             NewItemAddedEvent?.Invoke();
+        }
+
+        public static void UpdateCount(Product product, int count)
+        {
+            var products = (MongoCollectionBase<Product>)database.GetCollection<Product>("Product");
+            product.Count -= count;
+
+            var filter = Builders<Product>.Filter.Eq(s => s.Id, product.Id);
+            var result = products.ReplaceOneAsync(filter, product);
+            NewItemAddedEvent?.Invoke();
+        }
+
+        public static List<Role> GetRoles()
+        {
+            var roles = (MongoCollectionBase<Role>)database.GetCollection<Role>("Role");
+
+            return roles.Find(x => true).ToList();
+        }
+        public static Role GetRole(string name)
+        {
+            return GetRoles().FirstOrDefault(x => x.Name == name);
         }
     }
 }

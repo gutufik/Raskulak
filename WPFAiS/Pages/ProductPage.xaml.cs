@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,22 +29,26 @@ namespace Raskulak.Pages
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var product = new Product
-                {
-                    Name = tbName.Text,
-                    Count = int.Parse(tbCount.Text),
-                    Price = int.Parse(tbPrice.Text),
-                };
+            int count;
+            int price;
 
-                DataAccess.AddProduct(product);
-                NavigationService.GoBack();
-            }
-            catch
+            if (!(int.TryParse(tbCount.Text, out count)
+                && int.TryParse(tbPrice.Text, out price)
+                && count > 0 && price > 0))
             {
                 MessageBox.Show("Данные запонение не верно");
+                return;
             }
+
+            var product = new Product
+            {
+                Name = tbName.Text,
+                Count = int.Parse(tbCount.Text),
+                Price = int.Parse(tbPrice.Text),
+            };
+
+            DataAccess.AddProduct(product);
+            NavigationService.GoBack();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Raskulak.Pages
         {
             var login = tbLogin.Text;
             var password = pbPassword.Password;
-            DataAccess.AddUser(new User {Login = login, Password = password });
+            DataAccess.AddUser(new User {Login = login, Role = DataAccess.GetRole("Client"), Password = password });
             App.User = DataAccess.GetUser(login, password);
             NavigationService.Navigate(new Pages.CatalogPage());
         }
