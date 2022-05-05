@@ -45,7 +45,8 @@ namespace Core
         }
         public static List<Order> GetOrders(User user)
         {
-            return GetOrders().Where(o=> o.User == user).ToList();
+            var orders = GetOrders();
+            return orders.Where(o => o.User.Login == user.Login).ToList();
         }
         public static void CreateOrder(Order order)
         {
@@ -53,7 +54,7 @@ namespace Core
             var basket = (MongoCollectionBase<BasketItem>)database.GetCollection<BasketItem>("Basket");
             foreach (var item in GetBasketItems(order.User))
             {
-                basket.DeleteOneAsync(x=> x == item);
+                basket.DeleteOneAsync(x=> x.User == item.User);
             }
 
             orders.InsertOneAsync(order);

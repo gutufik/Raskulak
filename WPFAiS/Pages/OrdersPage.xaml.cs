@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Core;
 
 namespace Raskulak.Pages
 {
@@ -20,9 +21,12 @@ namespace Raskulak.Pages
     /// </summary>
     public partial class OrdersPage : Page
     {
+        public List<Order> Orders { get; set; }
         public OrdersPage()
         {
             InitializeComponent();
+            Orders = DataAccess.GetOrders(App.User);
+            DataContext = this;
         }
     }
 }

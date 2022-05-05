@@ -55,7 +55,7 @@ namespace Raskulak.Pages
 
         private void btnOrders_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Pages.OrdersPage());
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
