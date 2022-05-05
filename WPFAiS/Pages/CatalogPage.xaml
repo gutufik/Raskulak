@@ -35,8 +35,9 @@
         </ListView>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
 
-            <Button x:Name="btnOrders" Content="Мои заказы"  Click="btnOrders_Click" Margin="50,0"/>
-            <Button x:Name="btnBasket" Content="Корзина"  Click="btnBasket_Click" Margin="10,0"/>
+            <Button x:Name="btnAllOrders" Content="Все заказы"  Click="btnAllOrders_Click" Margin="5,0"/>
+            <Button x:Name="btnOrders" Content="Мои заказы"  Click="btnOrders_Click" Margin="5,0"/>
+            <Button x:Name="btnBasket" Content="Корзина"  Click="btnBasket_Click" Margin="5,0"/>
         </StackPanel>
         <Label x:Name="lblEmpty" Content="Выберите товар" Grid.Row="1" Grid.Column="1" FontSize="25" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <StackPanel x:Name="spProduct" Grid.Row="1" Grid.Column="1" Orientation="Vertical" Visibility="Hidden">

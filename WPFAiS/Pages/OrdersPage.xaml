@@ -12,8 +12,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         <Label Content="Заказы" FontSize="36" HorizontalAlignment="Center"/>
+
+        <Label x:Name="lblEmpty" Content="Заказов пока нет" Visibility="Hidden" Grid.Row="1"  
+               HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
         <ListView x:Name="lvOrders" ItemsSource="{Binding Orders}" Grid.Row="1">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
@@ -35,5 +39,8 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+            <Button x:Name="btnDelete" Content="Удалить заказ"  Click="btnDelete_Click" Visibility="Hidden"/>
+        </StackPanel>
     </Grid>
 </Page>

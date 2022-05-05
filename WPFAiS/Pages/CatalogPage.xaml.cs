@@ -28,7 +28,10 @@ namespace Raskulak.Pages
             Products = DataAccess.GetProducts();
             DataAccess.NewItemAddedEvent += RefreshProducts;
             if (App.User.Role.Name == "Client")
+            { 
                 btnAddProduct.Visibility = Visibility.Hidden;
+                btnAllOrders.Visibility = Visibility.Hidden;
+            }
 
             DataContext = this;
         }
@@ -76,12 +79,17 @@ namespace Raskulak.Pages
 
         private void btnOrders_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Pages.OrdersPage());
+            NavigationService.Navigate(new Pages.OrdersPage(DataAccess.GetOrders(App.User)));
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Pages.ProductPage());
+        }
+
+        private void btnAllOrders_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.OrdersPage(DataAccess.GetOrders()));
         }
     }
 }

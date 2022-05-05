@@ -34,6 +34,16 @@ namespace Core
 
             basket.InsertOneAsync(basketItem);
         }
+
+        public static void DeleteOrder(Order order)
+        {
+            var orders = (MongoCollectionBase<Order>)database.GetCollection<Order>("Order");
+            var builder = Builders<Order>.Filter;
+            var filter = builder.Eq(x => x.Id, order.Id);
+            orders.DeleteOneAsync(filter);
+            //orders.DeleteOneAsync(x => x.Items == order.Items);
+        }
+
         public static List<BasketItem> GetBasketItems(User user)
         {
             var basketItems = (MongoCollectionBase<BasketItem>)database.GetCollection<BasketItem>("Basket");
@@ -41,8 +51,8 @@ namespace Core
         }
         public static List<Order> GetOrders()
         {
-            var basketItems = (MongoCollectionBase<Order>)database.GetCollection<Order>("Order");
-            return basketItems.Find(x => true).ToList();
+            var orders = (MongoCollectionBase<Order>)database.GetCollection<Order>("Order");
+            return orders.Find(x => true).ToList();
         }
         public static List<Order> GetOrders(User user)
         {

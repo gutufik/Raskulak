@@ -22,11 +22,26 @@ namespace Raskulak.Pages
     public partial class OrdersPage : Page
     {
         public List<Order> Orders { get; set; }
-        public OrdersPage()
+        public OrdersPage(List<Order> orders)
         {
             InitializeComponent();
-            Orders = DataAccess.GetOrders(App.User);
+            Orders = orders;
+            if (Orders.Count == 0)
+                lblEmpty.Visibility = Visibility.Visible;
+            else if (App.User.Role.Name != "Client")
+                btnDelete.Visibility = Visibility.Visible;
             DataContext = this;
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var order = (lvOrders.SelectedItem as Order);
+            if (order != null)
+            { 
+                DataAccess.DeleteOrder(order);
+                Orders.Remove(order);
+                lvOrders.Items.Refresh();
+            }
         }
     }
 }
