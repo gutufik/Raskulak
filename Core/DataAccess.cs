@@ -50,6 +50,11 @@ namespace Core
         public static void CreateOrder(Order order)
         {
             var orders = (MongoCollectionBase<Order>)database.GetCollection<Order>("Order");
+            var basket = (MongoCollectionBase<BasketItem>)database.GetCollection<BasketItem>("Basket");
+            foreach (var item in GetBasketItems(order.User))
+            {
+                basket.DeleteOneAsync(x=> x == item);
+            }
 
             orders.InsertOneAsync(order);
         }

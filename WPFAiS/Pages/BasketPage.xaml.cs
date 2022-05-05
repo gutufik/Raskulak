@@ -34,5 +34,17 @@ namespace Raskulak.Pages
             }
             DataContext = this;
         }
+
+        private void btnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            var order = new Order
+            {
+                Items = BasketItems,
+                User = App.User
+            };
+            DataAccess.CreateOrder(order);
+            NavigationService.GoBack();
+
+        }
     }
 }
