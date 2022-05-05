@@ -11,6 +11,9 @@ namespace Core
     {
         public static MongoClient client = new MongoClient("mongodb://localhost");
         public static MongoDatabaseBase database = (MongoDatabaseBase)client.GetDatabase("Raskulak");
+        public delegate void NewItemAddedDelegate();
+
+        public static event NewItemAddedDelegate NewItemAddedEvent;
 
         public static List<Product> GetProducts()
         {
@@ -60,6 +63,12 @@ namespace Core
         {
             var users = (MongoCollectionBase<User>)database.GetCollection<User>("User");
             users.InsertOneAsync(user);
+        }
+        public static void AddProduct(Product product)
+        {
+            var products = (MongoCollectionBase<Product>)database.GetCollection<Product>("Product");
+            products.InsertOneAsync(product);
+            NewItemAddedEvent?.Invoke();
         }
     }
 }

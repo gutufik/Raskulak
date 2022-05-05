@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition/>
+            <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
         <Label Content="Корзина" HorizontalAlignment="Center" FontSize="36"/>
         <ListView ItemsSource="{Binding BasketItems}" Grid.Row="1">
@@ -28,5 +29,6 @@
             </ListView.ItemTemplate>
         </ListView>
         <Label x:Name="lblEmpty" Content="Корзина пуста" HorizontalAlignment="Center" Grid.Row="1" FontSize="25" VerticalAlignment="Center" Visibility="Hidden"/>
+        <Button x:Name="btnOrder" Content="Заказать" Grid.Row="2" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

@@ -32,7 +32,10 @@ namespace Raskulak.Pages
             var password = pbPassword.Password;
 
             App.User = DataAccess.GetUser(login, password);
-            NavigationService.Navigate(new Pages.CatalogPage());
+            if (App.User == null)
+                MessageBox.Show("Неверный логин или пароль");
+            else
+                NavigationService.Navigate(new Pages.CatalogPage());
         }
 
         private void btnRegistration_Click(object sender, RoutedEventArgs e)

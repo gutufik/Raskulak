@@ -26,7 +26,15 @@ namespace Raskulak.Pages
         {
             InitializeComponent();
             Products = DataAccess.GetProducts();
+            DataAccess.NewItemAddedEvent += RefreshProducts;
             DataContext = this;
+        }
+
+        private void RefreshProducts()
+        {
+            Products = DataAccess.GetProducts();
+            lvProducts.ItemsSource = Products;
+            lvProducts.Items.Refresh();
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,6 +56,11 @@ namespace Raskulak.Pages
         private void btnOrders_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Pages.ProductPage());
         }
     }
 }

@@ -28,8 +28,10 @@ namespace Raskulak.Pages
 
             BasketItems = DataAccess.GetBasketItems(App.User);
             if (BasketItems.Count == 0)
+            {
                 lblEmpty.Visibility = Visibility.Visible;
-
+                btnOrder.Visibility = Visibility.Hidden;
+            }
             DataContext = this;
         }
     }
