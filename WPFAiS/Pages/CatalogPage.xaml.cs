@@ -31,6 +31,7 @@ namespace Raskulak.Pages
             { 
                 btnAddProduct.Visibility = Visibility.Hidden;
                 btnAllOrders.Visibility = Visibility.Hidden;
+                btnDeleteProduct.Visibility = Visibility.Hidden;
             }
 
             DataContext = this;
@@ -90,6 +91,12 @@ namespace Raskulak.Pages
         private void btnAllOrders_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Pages.OrdersPage(DataAccess.GetOrders()));
+        }
+        private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var product = lvProducts.SelectedItem as Product;
+            if (product != null)
+                DataAccess.DeleteProduct(product);
         }
     }
 }

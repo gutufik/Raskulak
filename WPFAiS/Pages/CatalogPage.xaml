@@ -47,6 +47,10 @@
             <TextBox FontSize="15" x:Name="tbCount"/>
             <Button x:Name="btnAddToBasket" Content="Добавить в корзину" Margin="30,10" Click="btnAddToBasket_Click"/>
         </StackPanel>
-        <Button x:Name="btnAddProduct" Content="Новый продукт" HorizontalAlignment="Center" Click="btnAddProduct_Click"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnAddProduct" Content="Новый продукт" HorizontalAlignment="Center" Click="btnAddProduct_Click" Margin="5,0"/>
+            <Button x:Name="btnDeleteProduct" Content="Удалить продукт" HorizontalAlignment="Center" Click="btnDeleteProduct_Click" Margin="5,0"/>
+            
+        </StackPanel>
     </Grid>
 </Page>

@@ -41,7 +41,6 @@ namespace Core
             var builder = Builders<Order>.Filter;
             var filter = builder.Eq(x => x.Id, order.Id);
             orders.DeleteOneAsync(filter);
-            //orders.DeleteOneAsync(x => x.Items == order.Items);
         }
 
         public static List<BasketItem> GetBasketItems(User user)
@@ -95,6 +94,9 @@ namespace Core
 
             var filter = Builders<Product>.Filter.Eq(s => s.Id, product.Id);
             var result = products.ReplaceOneAsync(filter, product);
+
+            if (product.Count == 0)
+                DeleteProduct(product);
             NewItemAddedEvent?.Invoke();
         }
 
@@ -107,6 +109,14 @@ namespace Core
         public static Role GetRole(string name)
         {
             return GetRoles().FirstOrDefault(x => x.Name == name);
+        }
+        public static void DeleteProduct(Product product)
+        {
+            var products = (MongoCollectionBase<Product>)database.GetCollection<Product>("Product");
+            var builder = Builders<Product>.Filter;
+            var filter = builder.Eq(x => x.Id, product.Id);
+            products.DeleteOneAsync(filter);
+            NewItemAddedEvent?.Invoke();
         }
     }
 }
