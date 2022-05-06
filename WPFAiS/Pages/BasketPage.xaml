@@ -11,20 +11,24 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Label Content="Корзина" HorizontalAlignment="Center" FontSize="36"/>
-        <StackPanel x:Name="spTitles" Grid.Row="1" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-            <TextBlock Margin="0, 0" Width="100" Text="Изображение" TextAlignment="Center"/>
-            <TextBlock Margin="20, 0" Width="150" Text="Название" TextAlignment="Center"/>
-            <TextBlock Margin="20, 0" Width="50" Text="Кол-во" TextAlignment="Center"/>
-            <TextBlock Margin="20, 0" Width="50" Text="Цена" TextAlignment="Center"/>
+        <Label Content="Корзина" HorizontalAlignment="Center" FontSize="36" Grid.Column="1"/>
+        <StackPanel x:Name="spTitles" Grid.Row="1" Orientation="Horizontal" Height="50" 
+                    Grid.Column="1" VerticalAlignment="Top">
+            <TextBlock Margin="0, 0" Width="100" Text="Изображение" TextAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Margin="20, 0" Width="150" Text="Название" TextAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Margin="20, 0" Width="50" Text="Кол-во" TextAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Margin="20, 0" Width="50" Text="Цена" TextAlignment="Center" FontWeight="Bold"/>
         </StackPanel>
-        <ListView ItemsSource="{Binding BasketItems}" Grid.Row="1" Margin="0,10">
+        <ListView ItemsSource="{Binding BasketItems}"
+                 Grid.Column="1" Grid.Row="1" Margin="0,20">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -36,11 +40,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel x:Name="spSum" Orientation="Horizontal" Grid.Row="2">
-            <TextBlock Text="Итоговая сумма" Margin="20,0"/>
-            <TextBlock Text="{Binding Sum}" Margin="20, 0"/>
+        <StackPanel x:Name="spSum" Orientation="Horizontal" 
+                   Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center">
+            <TextBlock Text="Итоговая сумма" Margin="20,0" FontSize="15"/>
+            <TextBlock Text="{Binding Sum}" Margin="20, 0" FontSize="15" FontWeight="Bold"/>
         </StackPanel>
-        <Label x:Name="lblEmpty" Content="Корзина пуста" HorizontalAlignment="Center" Grid.Row="1" FontSize="25" VerticalAlignment="Center" Visibility="Hidden"/>
-        <Button x:Name="btnOrder" Content="Заказать" Grid.Row="2" HorizontalAlignment="Center" Click="btnOrder_Click"/>
+        <Label x:Name="lblEmpty" Content="Корзина пуста" HorizontalAlignment="Center"
+               Grid.Row="1" Grid.Column="1" FontSize="25" VerticalAlignment="Center" Visibility="Hidden"/>
+        <Button x:Name="btnOrder" Content="Заказать" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Click="btnOrder_Click"/>
     </Grid>
 </Page>

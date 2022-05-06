@@ -9,24 +9,29 @@
       Title="OrdersPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
             <RowDefinition/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <Label Content="Заказы" FontSize="36" HorizontalAlignment="Center"/>
+        <Label Content="Заказы" Grid.Column="1" FontSize="36" HorizontalAlignment="Center"/>
 
-        <Label x:Name="lblEmpty" Content="Заказов пока нет" Visibility="Hidden" Grid.Row="1"  
+        <Label x:Name="lblEmpty" Grid.Column="1" Content="Заказов пока нет" Visibility="Hidden" Grid.Row="1"  
                HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
-        <StackPanel x:Name="spTitles" Grid.Row="1" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-            <TextBlock Margin="0, 0" Width="100" Text="Клиент" TextAlignment="Center"/>
-            <TextBlock Margin="20, 0" Width="150" Text="Продукты" TextAlignment="Center"/>
-            <TextBlock Margin="30, 0" Width="50" Text="Итог" TextAlignment="Center"/>
+        <StackPanel x:Name="spTitles" Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+            <TextBlock Margin="0, 0" Width="100" Text="Клиент" TextAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Margin="20, 0" Width="150" Text="Продукты" TextAlignment="Center" FontWeight="Bold"/>
+            <TextBlock Margin="30, 0" Width="50" Text="Итог" TextAlignment="Center" FontWeight="Bold"/>
         </StackPanel>
-        <ListView x:Name="lvOrders" ItemsSource="{Binding Orders}" Grid.Row="1" Margin="0,20">
+        <ListView x:Name="lvOrders" ItemsSource="{Binding Orders}" Grid.Column="1" Grid.Row="1" Margin="0,20">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
-                    <Setter Property="BorderBrush" Value="LightGray" />
+                    <Setter Property="BorderBrush" Value="Gray" />
                     <Setter Property="BorderThickness" Value="0,0,0,1" />
                 </Style>
             </ListView.ItemContainerStyle>
@@ -46,7 +51,7 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center">
             <Button x:Name="btnDelete" Content="Удалить заказ"  Click="btnDelete_Click" Visibility="Hidden"/>
         </StackPanel>
     </Grid>

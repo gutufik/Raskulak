@@ -19,26 +19,29 @@
             <RowDefinition/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="spCreator" Visibility="Hidden" Orientation="Vertical">
-            <TextBlock Text="Создатель"/>
-            <TextBlock x:Name="tbCreator" Text=""/>
-            <TextBlock  Text="Дата создания"/>
-            <TextBlock x:Name="tbDate" Text=""/>
+        <StackPanel x:Name="spCreator" Visibility="Hidden" Orientation="Vertical" Margin="20,0" Grid.Column="2">
+            <TextBlock Text="Создатель" FontSize="15" FontWeight="Bold"/>
+            <TextBlock x:Name="tbCreator" Text="" FontSize="15"/>
+            <TextBlock  Text="Дата создания" FontSize="15" FontWeight="Bold"/>
+            <TextBlock x:Name="tbDate" Text="" FontSize="15"/>
         </StackPanel>
         <Label Content="Продукт" HorizontalAlignment="Center" FontSize="36" Grid.Column="1"/>
         <StackPanel x:Name="spProduct" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1">
-            <TextBlock Text="Название" FontSize="20"/>
+            <TextBlock Text="Название" FontSize="20" FontWeight="Bold"/>
             <TextBox x:Name="tbName" FontSize="15"/>
-            <TextBlock Text="Количество" FontSize="20"/>
+            <TextBlock Text="Количество" FontSize="20" FontWeight="Bold"/>
             <TextBox FontSize="15" x:Name="tbCount"/>
-            <TextBlock Text="Цена" FontSize="20"/>
+            <TextBlock Text="Цена" FontSize="20" FontWeight="Bold"/>
             <TextBox FontSize="15" x:Name="tbPrice"/>
-            <TextBlock Text="Ссылка на изображение" FontSize="20"/>
+            <TextBlock Text="Ссылка на изображение" FontSize="20" FontWeight="Bold"/>
             <TextBox FontSize="15" x:Name="tbImage" TextChanged="tbImage_TextChanged"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Grid.Column="1">
             <Button x:Name="btnAddProduct" Content="Сохранить" Click="btnAddProduct_Click" />
         </StackPanel>
-        <Image x:Name="imgProduct" Grid.Column="2" Grid.Row="1"/>
+        <Border BorderBrush="Black" VerticalAlignment="Top" BorderThickness="3" 
+                Width="250" Height="300" Background="White" Grid.Row="1" Grid.Column="2" >
+            <Image x:Name="imgProduct" VerticalAlignment="Center"/>
+        </Border>
     </Grid>
 </Page>
