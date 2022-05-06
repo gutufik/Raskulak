@@ -16,5 +16,6 @@ namespace Core
         public ObjectId Id { get { return _id; } }
         public User User { get; set; }
         public List<BasketItem> Items { get; set; }
+        public int Sum { get; set; }
     }
 }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Raskulak"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Background="#B3E5FC"
+        Title="MainWindow" MinHeight="600" MinWidth="1100">
     <Grid>
         <Frame x:Name="MainFrame"/>
     </Grid>

@@ -18,7 +18,12 @@
 
         <Label x:Name="lblEmpty" Content="Заказов пока нет" Visibility="Hidden" Grid.Row="1"  
                HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25"/>
-        <ListView x:Name="lvOrders" ItemsSource="{Binding Orders}" Grid.Row="1">
+        <StackPanel x:Name="spTitles" Grid.Row="1" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+            <TextBlock Margin="0, 0" Width="100" Text="Клиент" TextAlignment="Center"/>
+            <TextBlock Margin="20, 0" Width="150" Text="Продукты" TextAlignment="Center"/>
+            <TextBlock Margin="30, 0" Width="50" Text="Итог" TextAlignment="Center"/>
+        </StackPanel>
+        <ListView x:Name="lvOrders" ItemsSource="{Binding Orders}" Grid.Row="1" Margin="0,20">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
                     <Setter Property="BorderBrush" Value="LightGray" />
@@ -27,14 +32,16 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <ListView ItemsSource="{Binding Items}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding User.Login}" Margin="20, 0" Width="100"/>
+                        <ListView ItemsSource="{Binding Items}" Margin="20, 0" Width="150">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding Product.Name}"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        <TextBlock Text="{Binding Sum}" Margin="0, 0" Width="50" VerticalAlignment="Center"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>

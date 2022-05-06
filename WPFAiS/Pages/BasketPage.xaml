@@ -18,18 +18,28 @@
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         <Label Content="Корзина" HorizontalAlignment="Center" FontSize="36"/>
-        <ListView ItemsSource="{Binding BasketItems}" Grid.Row="1">
+        <StackPanel x:Name="spTitles" Grid.Row="1" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+            <TextBlock Margin="0, 0" Width="100" Text="Изображение" TextAlignment="Center"/>
+            <TextBlock Margin="20, 0" Width="150" Text="Название" TextAlignment="Center"/>
+            <TextBlock Margin="20, 0" Width="50" Text="Кол-во" TextAlignment="Center"/>
+            <TextBlock Margin="20, 0" Width="50" Text="Цена" TextAlignment="Center"/>
+        </StackPanel>
+        <ListView ItemsSource="{Binding BasketItems}" Grid.Row="1" Margin="0,10">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Product.Name}" Margin="20, 0"/>
-                        <TextBlock Text="{Binding Count}" Margin="20,0"/>
-                        <TextBlock Text="{Binding Product.Price}" Margin="20,0"/>
+                        <Image Source="{Binding Product.Image}" Margin="0, 0" Width="100" Height="100"/>
+                        <TextBlock Text="{Binding Product.Name}" Margin="20, 0" Width="150" TextWrapping="Wrap" FontSize="20"/>
+                        <TextBlock Text="{Binding Count}" Margin="20, 0" Width="50" FontSize="20" />
+                        <TextBlock Text="{Binding Product.Price}" Margin="20, 0" Width="50" FontSize="20"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <TextBlock Text="{Binding Sum}" Grid.Row="1"/>
+        <StackPanel x:Name="spSum" Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="Итоговая сумма" Margin="20,0"/>
+            <TextBlock Text="{Binding Sum}" Margin="20, 0"/>
+        </StackPanel>
         <Label x:Name="lblEmpty" Content="Корзина пуста" HorizontalAlignment="Center" Grid.Row="1" FontSize="25" VerticalAlignment="Center" Visibility="Hidden"/>
         <Button x:Name="btnOrder" Content="Заказать" Grid.Row="2" HorizontalAlignment="Center" Click="btnOrder_Click"/>
     </Grid>

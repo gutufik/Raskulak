@@ -27,7 +27,10 @@ namespace Raskulak.Pages
             InitializeComponent();
             Orders = orders;
             if (Orders.Count == 0)
+            {
                 lblEmpty.Visibility = Visibility.Visible;
+                spTitles.Visibility = Visibility.Hidden;
+            }
             else if (App.User.Role.Name != "Client")
                 btnDelete.Visibility = Visibility.Visible;
             DataContext = this;

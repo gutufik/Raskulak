@@ -32,6 +32,8 @@ namespace Raskulak.Pages
             {
                 lblEmpty.Visibility = Visibility.Visible;
                 btnOrder.Visibility = Visibility.Hidden;
+                spTitles.Visibility = Visibility.Hidden;
+                spSum.Visibility = Visibility.Hidden;
             }
             Sum = BasketItems.Sum<BasketItem>(x => x.Product.Price * x.Count);
             DataContext = this;
@@ -42,7 +44,8 @@ namespace Raskulak.Pages
             var order = new Order
             {
                 Items = BasketItems,
-                User = App.User
+                User = App.User,
+                Sum = Sum
             };
             DataAccess.CreateOrder(order);
             NavigationService.GoBack();
