@@ -22,6 +22,7 @@ namespace Raskulak.Pages
     public partial class BasketPage : Page
     {
         public List<BasketItem> BasketItems { get; set; }
+        public int Sum { get; set; }
         public BasketPage()
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace Raskulak.Pages
                 lblEmpty.Visibility = Visibility.Visible;
                 btnOrder.Visibility = Visibility.Hidden;
             }
+            Sum = BasketItems.Sum<BasketItem>(x => x.Product.Price * x.Count);
             DataContext = this;
         }
 

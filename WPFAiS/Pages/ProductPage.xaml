@@ -11,6 +11,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*"/>
@@ -18,17 +20,20 @@
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Продукт" HorizontalAlignment="Center" FontSize="36"/>
-        <StackPanel x:Name="spProduct" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center">
+        <Label Content="Продукт" HorizontalAlignment="Center" FontSize="36" Grid.Column="1"/>
+        <StackPanel x:Name="spProduct" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1">
             <TextBlock Text="Название" FontSize="20"/>
             <TextBox x:Name="tbName" FontSize="15"/>
             <TextBlock Text="Количество" FontSize="20"/>
             <TextBox FontSize="15" x:Name="tbCount"/>
             <TextBlock Text="Цена" FontSize="20"/>
             <TextBox FontSize="15" x:Name="tbPrice"/>
+            <TextBlock Text="Ссылка на изображение" FontSize="20"/>
+            <TextBox FontSize="15" x:Name="tbImage" TextChanged="tbImage_TextChanged"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Grid.Column="1">
             <Button x:Name="btnAddProduct" Content="Сохранить" Click="btnAddProduct_Click" />
         </StackPanel>
+        <Image x:Name="imgProduct" Grid.Column="2" Grid.Row="1"/>
     </Grid>
 </Page>

@@ -39,16 +39,40 @@ namespace Raskulak.Pages
                 MessageBox.Show("Данные запонение не верно");
                 return;
             }
+            BitmapImage bitmap = new BitmapImage();
+            try
+            {
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(tbImage.Text, UriKind.Absolute);
+                bitmap.EndInit();
+            }
+            catch { }
+
 
             var product = new Product
             {
                 Name = tbName.Text,
                 Count = int.Parse(tbCount.Text),
                 Price = int.Parse(tbPrice.Text),
+                ImageLink = tbImage.Text
             };
 
             DataAccess.AddProduct(product);
             NavigationService.GoBack();
+        }
+
+        private void tbImage_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(tbImage.Text, UriKind.Absolute);
+                bitmap.EndInit();
+
+                imgProduct.Source = bitmap;
+            }
+            catch { }
         }
     }
 }

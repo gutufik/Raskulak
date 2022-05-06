@@ -24,10 +24,12 @@
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Product.Name}" Margin="20, 0"/>
                         <TextBlock Text="{Binding Count}" Margin="20,0"/>
+                        <TextBlock Text="{Binding Product.Price}" Margin="20,0"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <TextBlock Text="{Binding Sum}" Grid.Row="1"/>
         <Label x:Name="lblEmpty" Content="Корзина пуста" HorizontalAlignment="Center" Grid.Row="1" FontSize="25" VerticalAlignment="Center" Visibility="Hidden"/>
         <Button x:Name="btnOrder" Content="Заказать" Grid.Row="2" HorizontalAlignment="Center" Click="btnOrder_Click"/>
     </Grid>
