@@ -18,6 +18,8 @@ namespace Core
         public ObjectId Id { get { return _id; } }
         public string Name { get; set; }
         public string ImageLink { get; set; }
+        public DateTime CreationDate { get; set; }
+        public User Creator { get; set; }
         public BitmapImage Image
         {
             get

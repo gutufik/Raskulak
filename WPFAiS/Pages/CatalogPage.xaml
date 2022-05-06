@@ -50,6 +50,7 @@
             <Button x:Name="btnAddToBasket" Content="Добавить в корзину" Margin="30,10" Click="btnAddToBasket_Click"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="btnProductInfo" Content="О продукте" Margin="5, 0" Click="btnProductInfo_Click"/>
             <Button x:Name="btnAddProduct" Content="Новый продукт" HorizontalAlignment="Center" Click="btnAddProduct_Click" Margin="5,0"/>
             <Button x:Name="btnDeleteProduct" Content="Удалить продукт" HorizontalAlignment="Center" Click="btnDeleteProduct_Click" Margin="5,0"/>
             

@@ -99,6 +99,15 @@ namespace Core
                 DeleteProduct(product);
             NewItemAddedEvent?.Invoke();
         }
+        public static void UpdateProduct(Product product)
+        {
+            var products = (MongoCollectionBase<Product>)database.GetCollection<Product>("Product");
+            var filter = Builders<Product>.Filter.Eq(s => s.Id, product.Id);
+            var result = products.ReplaceOneAsync(filter, product);
+            if (product.Count == 0)
+                DeleteProduct(product);
+            NewItemAddedEvent?.Invoke();
+        }
 
         public static List<Role> GetRoles()
         {

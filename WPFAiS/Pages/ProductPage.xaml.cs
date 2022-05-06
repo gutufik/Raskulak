@@ -22,9 +22,27 @@ namespace Raskulak.Pages
     /// </summary>
     public partial class ProductPage : Page
     {
+        public Product Product { get; set; }
         public ProductPage()
         {
             InitializeComponent();
+        }
+        public ProductPage(Product product)
+        {
+            InitializeComponent();
+            Product = product;
+            tbCount.Text = product.Count.ToString();
+            tbPrice.Text = product.Price.ToString();
+            tbName.Text = product.Name;
+            tbImage.Text = product.ImageLink;
+            tbCreator.Text = product.Creator.Login;
+            tbDate.Text = product.CreationDate.ToString();
+            spCreator.Visibility = Visibility.Visible;
+            if (App.User.Role.Name == "Client")
+            {
+                spProduct.IsEnabled = false;
+                btnAddProduct.Visibility = Visibility.Hidden;
+            }
         }
 
         private void btnAddProduct_Click(object sender, RoutedEventArgs e)
@@ -53,11 +71,26 @@ namespace Raskulak.Pages
             {
                 Name = tbName.Text,
                 Count = int.Parse(tbCount.Text),
+                CreationDate = DateTime.Now,
+                Creator = App.User,
                 Price = int.Parse(tbPrice.Text),
                 ImageLink = tbImage.Text
             };
 
-            DataAccess.AddProduct(product);
+
+            if (Product == null)
+                DataAccess.AddProduct(product);
+            else
+            {
+                Product.Name = tbName.Text;
+                Product.Count = int.Parse(tbCount.Text);
+                Product.CreationDate = DateTime.Now;
+                Product.Creator = App.User;
+                Product.Price = int.Parse(tbPrice.Text);
+                Product.ImageLink = tbImage.Text;
+                DataAccess.UpdateProduct(Product);
+            }
+
             NavigationService.GoBack();
         }
 

@@ -68,7 +68,8 @@ namespace Raskulak.Pages
             int count;
             if (int.TryParse(tbCount.Text, out count) && count > 0 && count <= product.Count)
             {
-                DataAccess.UpdateCount(product, count);
+                product.Count -= count;
+                DataAccess.UpdateProduct(product);
 
                 DataAccess.AddToBasket(product, count, App.User);
             }
@@ -97,6 +98,13 @@ namespace Raskulak.Pages
             var product = lvProducts.SelectedItem as Product;
             if (product != null)
                 DataAccess.DeleteProduct(product);
+        }
+
+        private void btnProductInfo_Click(object sender, RoutedEventArgs e)
+        {
+            var product = lvProducts.SelectedItem as Product;
+            if (product != null)
+                NavigationService.Navigate(new Pages.ProductPage(product));
         }
     }
 }

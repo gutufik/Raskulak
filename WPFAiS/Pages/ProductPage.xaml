@@ -19,7 +19,12 @@
             <RowDefinition/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
-
+        <StackPanel x:Name="spCreator" Visibility="Hidden" Orientation="Vertical">
+            <TextBlock Text="Создатель"/>
+            <TextBlock x:Name="tbCreator" Text=""/>
+            <TextBlock  Text="Дата создания"/>
+            <TextBlock x:Name="tbDate" Text=""/>
+        </StackPanel>
         <Label Content="Продукт" HorizontalAlignment="Center" FontSize="36" Grid.Column="1"/>
         <StackPanel x:Name="spProduct" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="1">
             <TextBlock Text="Название" FontSize="20"/>
